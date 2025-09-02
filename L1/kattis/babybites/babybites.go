@@ -4,35 +4,33 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 )
 
 func main() {
-	var n int
-	fmt.Scan(&n)
+	s := bufio.NewScanner(os.Stdin)
 
-	//to handle the next line with spaces
-	reader := bufio.NewReader(os.Stdin)
-	reader.ReadString('\n') //discard leftover newline?
+	//first line
+	s.Scan()
 
-	s, _ := reader.ReadString('\n')
-	s = strings.TrimSpace(s) // remove the trailing newline?
-	fmt.Println(s)
+	//second line
+	s.Scan()
 
-	//for i = 0; 9 <
+	words := strings.Fields(s.Text())
 
-	//conclusion := "makes sense"
+	conclusion := "makes sense"
 
-	/*String conclusion = "makes sense";
+	for i, word := range words {
+		if word == "mumble" {
+			continue
+		} else if r, err := strconv.Atoi(word); err == nil {
+			if r != i+1 {
+				conclusion = "something is fishy"
+				break
+			}
+		}
+	}
 
-
-	  for(int i = 1; i <= n ; i++){
-	      String iS = Integer.toString(i);
-	      String t = s.next();
-	      if(t.equals("mumble")){
-	      } else if (t.equals(iS) != true){
-	      	conclusion = "Something is fishy";
-	       }
-	  }
-	      System.out.println(conclusion); */
+	fmt.Print(conclusion)
 }
