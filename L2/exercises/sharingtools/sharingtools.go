@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
 func Manny(hammer, nailbox chan string) {
@@ -9,8 +10,10 @@ func Manny(hammer, nailbox chan string) {
 		<- hammer
 		<- nailbox 
 		fmt.Println("Manny is building");
+		time.Sleep( 500 * time.Millisecond)
 		hammer <- "hammer"
 		fmt.Println("Manny is resting");
+		time.Sleep( 500 * time.Millisecond)
 		nailbox <- "nail"
 	}
 }
@@ -20,12 +23,13 @@ func Bob(hammer, nailbox chan string ) {
 		x := <- hammer
 		y := <- nailbox
 		fmt.Println("Bob is building")
+		time.Sleep( 500 * time.Millisecond)
 		hammer <- x
 		fmt.Println("Bob is resting")
+		time.Sleep( 500 * time.Millisecond)
 		nailbox <- y
 	}
 }
-
 
 func main(){
 	var hammer = make(chan string)
@@ -36,6 +40,5 @@ func main(){
 	hammer <- "hammer"
 	nailbox <- "nail"
 
-	for{}
-	
+	time.Sleep(5 * time.Second)
 }
