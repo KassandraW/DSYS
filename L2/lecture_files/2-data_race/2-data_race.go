@@ -16,7 +16,7 @@ func worker() {
 	for i := 0; i < N; i++ {
 		arbiter.Lock()
 		balance++
-		// arbiter.Unlock()
+		arbiter.Unlock()
 	}
 	fmt.Println("Done")
 }
