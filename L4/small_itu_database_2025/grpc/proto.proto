@@ -3,12 +3,12 @@ option go_package = "ITUServer/grpc/proto";
 
 message Students {
     repeated string students = 1; //repeated means that there can be more than one of this type. If it wasnt there it would only expect 1.
-                                 // = 1 the order of the fields, so if we had another varaible, we would call it = 2
+    // = 1 the order of the fields, so if we had another varaible, we would call it = 2
 }
 
 message Empty {} //this message will not receive any variables.
 
 service ITUDatabase { //maintain rpc calls between server and client. 
     rpc GetStudents (Empty) returns (Students) {}; //is a function call. () is what it should send, and it should return Students. 
-                                                  //If you send GetStudents from a client it sends empty and then it returns Students
+    //If you send GetStudents from a client it sends empty and then it returns Students
 }
