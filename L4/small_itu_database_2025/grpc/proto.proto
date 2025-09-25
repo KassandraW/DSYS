@@ -1,0 +1,12 @@
+syntax = "proto3";
+option go_package = "ITUServer/grpc/proto";
+
+message Students {
+    repeated string students = 1;
+}
+
+message Empty {}
+
+service ITUDatabase {
+    rpc GetStudents (Empty) returns (Students) {};
+}
